@@ -1,6 +1,5 @@
 $(function() {
    $("#btnData").click(loadData);
-   $("#btn").click(album);
   });
   function loadData() {
     $.ajax({
