@@ -1,10 +1,11 @@
 $(function() {
    $("#btnData").click(loadData);
+
   });
   function loadData() {
     $.ajax({
       url: "https://jsonplaceholder.typicode.com/comments",
-      method: "GET",
+      method: "GET", 
       
       error: function(response) {
         var loadData = $("#data");
@@ -27,31 +28,4 @@ $(function() {
     }
        
     });
-}
-function album(){
-    $.ajax({
-        url: "https://jsonplaceholder.typicode.com/albums",
-        method: "GET",
-        
-        error: function(response) {
-          var data = $("#album");
-          data.html("An Error has occured");
-        },
-        
-      success: function(response){
-          console.log(response);
-          var load = $("#album");
-          $("#album").empty();
-          for (var i = 0; i< response.length; i++)
-          {
-              var data = response[i];
-           load.append(`<div class = "album"><h3>${data.id}</h3><p><button class = "btn btn-danger btn-sm float-right" >update</button> ${data.title}</p></div>`);
-              
-  
-          }
-      }
-        //  recipes.append("<div><h3>" + rec.title + "</h3></div>");
-         
-      });
-
 }

@@ -2,49 +2,18 @@
 <html lang="en">
 <head>
     <script src="./jquery-3.6.0.min.js"></script>
-    <script src="./popper.min.js"></script>
-    <script src="./bootstrap.min.js"></script>
-    <script src="./s2-lab.js"></script>
+    <script src="./album.js"></script>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./s2-lab.css">
     <title>Album</title>
 
-  <script>
-        $(function(){
-            $.ajax({
-        url: "https://jsonplaceholder.typicode.com/albums",
-        method: "GET",
-        
-        error: function(response) {
-          var data = $("#album");
-          data.html("An Error has occured");
-        },
-        
-      success: function(response){
-          console.log(response);
-          var load = $("#album");
-          $("#album").empty();
-          for (var i = 0; i< response.length; i++)
-          {
-              var data = response[i];
-           load.append(`<div class = "album"><h3>${data.id}</h3><p><button class = "btn btn-info btn-sm align: center;" >update</button><button class = "btn btn-danger btn-sm float-right" >Delete Album</button><button class = "btn btn-info btn-sm float-right" >Add Album</button> ${data.title}</p></div>`);
-              
-  
-          }
-      }
-        //  recipes.append("<div><h3>" + rec.title + "</h3></div>");
-         
-      });
-
-
-        });
-    </script>
+ 
     
 </head>
 
 <body>
     <div id= "album">
-        
+        loading....
     </div>
 </body>
 </html>
