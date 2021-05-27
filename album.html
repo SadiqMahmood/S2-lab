@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <script src="./jquery-3.6.0.min.js"></script>
+    <script src="./popper.js"></script>
+    <script src="./bootstrap.min.js"></script>
     <script src="./album.js"></script>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./s2-lab.css">
@@ -12,8 +14,42 @@
 </head>
 
 <body>
+
+    <h1>Recipies API Client</h1>
+    <div class="form-group">
+      <label for="title">Enter Title</label>
+      <input type="text"
+        class="form-control" name="title" id="title" aria-describedby="helpId">
+    </div>
+    <button id="addbtn" class="btn btn-info">add data</button>
+
     <div id= "album">
         loading....
     </div>
+
+    <div class="modal fade" id="updateModel" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden= "true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="updateId">
+                <div class="form-group">
+                  <label for="updateTitle">Update Title</label>
+                  <input type="text"
+                    class="form-control" name="updateTitle" id="updateTitle" aria-describedby="helpId">
+                </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="UpdateSave" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </body>
 </html>

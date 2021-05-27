@@ -1,8 +1,56 @@
 $(function(){
   loadData();
-  $("#album").on("click",".btn-danger",handleDelete)                                           
+  $("#album").on("click",".btn-danger",handleDelete) ;
+  $("#album").on("click", ".btn-warning", handleUpdate );
+  $("#addbtn").click(AddAlbum);
+  
+  $("#UpdateSave").click(function(){
+     
+    var id = $("#updateId").val();
+    var title = $("#updateTitle").val();
+    $.ajax({
+    url: "https://jsonplaceholder.typicode.com/albums/"+id,
+    data: {title},
+    method: "PUT",
+    success: function(response){
+            console.log(response); 
+            loadData();
+            $("#updateModel").modal("hide");
+    }
+
+  
+});
+});
 
 });
+
+function AddAlbum(){
+  var title = $("#title").val();
+  $.ajax({
+    url: "https://jsonplaceholder.typicode.com/albums",
+    method: "POST",
+    data: { title },
+    success: function(response) {
+      console.log(response);
+      $("#title").val("");
+      loadData();
+     
+    }
+  });
+}
+
+function handleUpdate(){
+  var btn = $(this);
+  var parentDiv = btn.closest(".title");
+  let id = parentDiv.attr("data-id");
+  $.get("https://jsonplaceholder.typicode.com/albums/" + id, function(response) {
+    $("#updateId").val(response.id);
+    $("#updateTitle").val(response.title); 
+    
+    $("#updateModel").modal("show");
+
+  });
+}
 
 function loadData(){
     $.ajax({
@@ -21,12 +69,11 @@ success: function(response){
   for (var i = 0; i< response.length; i++)
   {
       var data = response[i];
-   load.append(`<div class = "title" data-id ="${data.id}"><h3>${data.id}</h3><p><button class = "btn btn-info btn-sm float-right"> update </button><button class = "btn btn-danger btn-sm float-right" >Delete Album</button><button class = "btn btn-info btn-sm float-right" >Add Album</button> ${data.title}</p></div>`);
+   load.append(`<div class = "title" data-id ="${data.id}"><h3>${data.id}</h3><p><button class = "btn btn-warning btn-sm float-right"> update </button><button class = "btn btn-danger btn-sm float-right" >Delete Album</button>${data.title}</p></div>`);
       
 
   }
 }
-//  recipes.append("<div><h3>" + rec.title + "</h3></div>");
 
 });
 }
@@ -52,3 +99,4 @@ success: function() {
 }
 });
 }
+
